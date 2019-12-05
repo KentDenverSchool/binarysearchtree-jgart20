@@ -10,6 +10,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     }
 
     private int size(Node x) { //use Node's recursive size
+        if (x != null){
+            return x.getSize();
+        }
+        else return 0;
     }
 
     public boolean isEmpty() {
@@ -27,25 +31,26 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         if (n == null){
             Node<Key,Value> newN = new Node<Key,Value>(key, val);
             n = newN;
+            n.setSize(1);
         }
         else if (key.compareTo(n.getKey()) < 1){
             if (n.getLeft() == null){
                 Node<Key,Value> newN = new Node<Key,Value>(key, val);
                 n.setLeft(newN);
             }
-            else n.getLeft().put(n, key, val);
+            else n.setLeft(put(n.getLeft(), key, val));
         }
         else if (key.compareTo(n.getKey()) > 1){
             if (n.getRight() == null){
                 Node<Key,Value> newN = new Node<Key,Value>(key, val);
                 n.setRight(newN);
             }
-            else n.getRight().put(n, key, val);
+            else n.setRight(put(n.getRight(), key, val));
         }
         else{
             n.setValue(val);
         }
-
+        n.setSize(size(n.getRight()) + size(n.getLeft()) + 1);
         return n;
     }
     
@@ -57,9 +62,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     //recursive get
     //returns null if the key does not exist
     private Value get(Node<Key, Value> n, Key key) {
+        if (n == null) return null;
+        else if (key.compareTo(n.getKey()) < 1){
+            return get(n.getLeft(), key);
+        }
+        else if (key.compareTo(n.getKey()) > 1){
+            return get(n.getRight(), key);
+        }
+        else return n.getValue();
     }
 
     public boolean contains(Key key) {
+        return (get(root, key) != null);
     }
 
     public Value remove(Key key) {
@@ -92,7 +106,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     
     //returns the node at the left most left branch of n
     private Node<Key, Value> min(Node<Key, Value> n) {
-    }
+        if (n == null) return null;
+        else if (n.getLeft() == null) return n;
+        else return min(n.getLeft());
+        }
 
     public Key max() {
         return max(root).getKey();
@@ -100,7 +117,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     
     //returns the node at the right most right branch of n
     private Node<Key, Value> max(Node<Key, Value> n) {
- 
+        if (n == null) return null;
+        else if (n.getRight() == null) return n;
+        else return max(n.getRight());
     }
 
     public String toString() {
