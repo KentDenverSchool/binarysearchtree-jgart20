@@ -1,0 +1,49 @@
+Test Empty Constructor:
+Size should be: 0, Actual: 0
+Passed: true
+Put/Get should be: 3 with value 11, actual value: null at key 3Size should be: 1, actual: 1
+Passed: true
+Minimum should be 3 and maximum should be 3
+Passed: true
+ToString: {3=11}Put/Get should be: 2 with value 12, actual value: null at key 2Size should be: 2, actual: 2
+Passed: true
+Minimum should be 2 and maximum should be 3
+Passed: true
+ToString: {2=12, 3=11}Put/Get should be: 4 with value 13, actual value: 13 at key 4Size should be: 3, actual: 2
+Passed: false
+Minimum should be 2 and maximum should be 4
+Passed: false
+ToString: {2=12, 3=13}Put/Get should be: 1 with value 14, actual value: null at key 1Size should be: 4, actual: 3
+Passed: false
+Minimum should be 1 and maximum should be 4
+Passed: false
+ToString: {1=14, 2=12, 3=13}Put/Get should be: 8 with value 15, actual value: 15 at key 8Size should be: 5, actual: 3
+Passed: false
+Minimum should be 1 and maximum should be 8
+Passed: false
+ToString: {1=14, 2=12, 3=15}Put/Get should be: 6 with value 16, actual value: 16 at key 6Size should be: 6, actual: 3
+Passed: false
+Minimum should be 1 and maximum should be 8
+Passed: false
+ToString: {1=14, 2=12, 3=16}Put/Get should be: 4 with value 17, actual value: 17 at key 4Size should be: 7, actual: 3
+Passed: false
+Minimum should be 1 and maximum should be 8
+Passed: false
+ToString: {1=14, 2=12, 3=17}Put/Get should be: 9 with value 18, actual value: 18 at key 9Size should be: 8, actual: 3
+Passed: false
+Minimum should be 1 and maximum should be 9
+Passed: false
+ToString: {1=14, 2=12, 3=18}Remove key 8: 18New size should be: 7 , actual: 3Minimum should be 1 and maximum should be 9
+Passed: false
+New ToString: {1=14, 2=12, 3=18}Remove key 3: 12New size should be: 6 , actual: 2Minimum should be 1 and maximum should be 9
+Passed: false
+New ToString: {1=14, 2=12}Remove key 4: 12New size should be: 5 , actual: 2Minimum should be 1 and maximum should be 9
+Passed: false
+New ToString: {1=14, 2=12}Remove key 1: nullNew size should be: 4 , actual: 1Minimum should be 2 and maximum should be 9
+Passed: false
+New ToString: {2=12}Remove key 6: 12New size should be: 3 , actual: 1Minimum should be 2 and maximum should be 9
+Passed: false
+New ToString: {2=12}Remove key 9: 12New size should be: 2 , actual: 1Minimum should be 2 and maximum should be 2
+Passed: true
+New ToString: {2=12}Remove key 2: nullNew size should be: 1 , actual: 0
+ERROR: java.lang.NullPointerException

@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.EmptyStackException;
 import java.util.Scanner;
-import org.graalvm.compiler.graph.spi.Canonicalizable.Binary;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -27,7 +26,7 @@ public class BST_Tester {
     try{
         results += "Test Empty Constructor:";
         //Empty Constructor code we want to test
-          BinarySearchTree maple = new BinarySearchTree();
+          BST maple = new BST();
            results+= "\nSize should be: 0, Actual: " + maple.size()
                    + "\nPassed: " + (maple.size() == 0)
                    + "\n";
@@ -41,32 +40,32 @@ public class BST_Tester {
         int four = Integer.parseInt(sarray[3]);
         int five = Integer.parseInt(sarray[4]);
 
-        results += "Put/Get should be: " + one + " with value " + two + ", actual value: " + maple.put(one, two) + maple.get(one) + " at key " + one;
+        maple.put(one, two);
+        results += "Put/Get should be: " + one + " with value " + two + ", actual value: " + maple.get(one) + " at key " + one;
 
-        int a = i+1;
-        results += "Size should be: " + a +  ", actual: " + maple.size()
-                + "\nPassed: " + (maple.size() == a)
+        results += "Size should be: " + five +  ", actual: " + maple.size()
+                + "\nPassed: " + (maple.size() == five)
                 + "\n";
         
         results += "Minimum should be " + three + " and maximum should be " + four
-                + "\nPassed: " + (maple.min() == three && maple.max() == four)
+                + "\nPassed: " + (maple.min().equals(three) && maple.max().equals(four))
                 + "\n";
         
-        results += "ToString: " + maple.ToString();
+        results += "ToString: " + maple.toString();
         }
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 7; i++){
             String s = scnr.nextLine();
             String[] sarray = s.split(" ");
             int one = Integer.parseInt(sarray[0]);
             int two = Integer.parseInt(sarray[1]);
             int three = Integer.parseInt(sarray[2]);
             
-            results += "Remove key " + one + ": " + maple.remove(one) + "New size should be: " + (7-i) + " , actual: " + maple.size();
+            results += "Remove key " + one + ": " + maple.remove(one) + "New size should be: " + (6-i) + " , actual: " + maple.size();
             results += "Minimum should be " + two + " and maximum should be " + three
-                    + "\nPassed: " + (maple.min() == two && maple.max() == three)
+                    + "\nPassed: " + (maple.min().equals(two) && maple.max().equals(three))
                     + "\n";
-            results += "New ToString: " + maple.ToString();
+            results += "New ToString: " + maple.toString();
         }
 
 }

@@ -1,8 +1,8 @@
-public class BinarySearchTree<Key extends Comparable<Key>, Value> {
+public class BST<Key extends Comparable<Key>, Value> {
 
     public Node<Key, Value> root;
 
-    public BinarySearchTree() {
+    public BST() {
     }
 
     public int size() {
@@ -17,6 +17,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     }
 
     public boolean isEmpty() {
+        return this.size() == 0;
     }
     
     //recursive put wrapper
@@ -29,20 +30,21 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     //modified node n
     private Node<Key,Value> put(Node<Key, Value> n, Key key, Value val) {
         if (n == null){
-            Node<Key,Value> newN = new Node<Key,Value>(key, val);
+            Node<Key,Value> newN = new Node<Key,Value>(key, val, 1);
             n = newN;
             n.setSize(1);
+            return n;
         }
-        else if (key.compareTo(n.getKey()) < 1){
+        else if (key.compareTo(n.getKey()) < 0){
             if (n.getLeft() == null){
-                Node<Key,Value> newN = new Node<Key,Value>(key, val);
+                Node<Key,Value> newN = new Node<Key,Value>(key, val, 1);
                 n.setLeft(newN);
             }
             else n.setLeft(put(n.getLeft(), key, val));
         }
-        else if (key.compareTo(n.getKey()) > 1){
+        else if (key.compareTo(n.getKey()) > 0){
             if (n.getRight() == null){
-                Node<Key,Value> newN = new Node<Key,Value>(key, val);
+                Node<Key,Value> newN = new Node<Key,Value>(key, val, 1);
                 n.setRight(newN);
             }
             else n.setRight(put(n.getRight(), key, val));
@@ -63,10 +65,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     //returns null if the key does not exist
     private Value get(Node<Key, Value> n, Key key) {
         if (n == null) return null;
-        else if (key.compareTo(n.getKey()) < 1){
+        else if (key.compareTo(n.getKey()) < 0){
             return get(n.getLeft(), key);
         }
-        else if (key.compareTo(n.getKey()) > 1){
+        else if (key.compareTo(n.getKey()) > 0){
             return get(n.getRight(), key);
         }
         else return n.getValue();
